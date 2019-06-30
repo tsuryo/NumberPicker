@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NumberPicker">
+        <attr name="showText" format="boolean" />
+        <attr name="btnTxtColor" format="color" />
+        <attr name="numberTxtColor" format="color" />
+        <attr name="startValue" format="integer" />
+        <attr name="minValue" format="integer" />
+        <attr name="maxValue" format="integer" />
+    </declare-styleable>
+</resources>
