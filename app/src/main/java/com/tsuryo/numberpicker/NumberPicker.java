@@ -194,6 +194,16 @@ public class NumberPicker extends ConstraintLayout
         refresh();
     }
 
+    public void setTextSize(Integer textSize) {
+        this.textSize = textSize;
+        refresh();
+    }
+
+    public void setBtnTextSize(Integer btnTextSize) {
+        this.btnTextSize = btnTextSize;
+        refresh();
+    }
+
     private void refresh() {
         invalidate();
         requestLayout();
@@ -270,7 +280,9 @@ public class NumberPicker extends ConstraintLayout
     @Override
     protected Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
-        return new SavedState(superState, numberTxtColor, btnTxtColor);
+        return new SavedState(superState,
+                numberTxtColor, btnTxtColor,
+                textSize, btnTextSize);
     }
 
     @Override
@@ -285,20 +297,28 @@ public class NumberPicker extends ConstraintLayout
         void onNumberChange(int num);
     }
 
+    //todo: save textSize and btnTextSize
     protected static class SavedState extends BaseSavedState {
         private final int txtColor;
         private final int btnColor;
+        private final int textSize, btnTextSize;
 
-        private SavedState(Parcelable superState, int txtColor, int number2) {
+        private SavedState(Parcelable superState,
+                           int txtColor, int number2,
+                           int textSize, int btnTextSize) {
             super(superState);
             this.txtColor = txtColor;
             this.btnColor = number2;
+            this.textSize = textSize;
+            this.btnTextSize = btnTextSize;
         }
 
         private SavedState(Parcel in) {
             super(in);
             txtColor = in.readInt();
             btnColor = in.readInt();
+            textSize = in.readInt();
+            btnTextSize = in.readInt();
         }
 
         int getTxtColor() {
