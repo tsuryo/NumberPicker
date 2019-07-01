@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -18,24 +19,27 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.tsuryo.numberpicker.Constants.NumberPicker.BTN_TEXT_SIZE_DEF;
 import static com.tsuryo.numberpicker.Constants.NumberPicker.DELAY;
 import static com.tsuryo.numberpicker.Constants.NumberPicker.FAST_PERIOD;
 import static com.tsuryo.numberpicker.Constants.NumberPicker.MAX_VALUE_DEF;
 import static com.tsuryo.numberpicker.Constants.NumberPicker.MIN_VALUE_DEF;
 import static com.tsuryo.numberpicker.Constants.NumberPicker.SLOW_PERIOD;
 import static com.tsuryo.numberpicker.Constants.NumberPicker.START_VALUE_DEF;
+import static com.tsuryo.numberpicker.Constants.NumberPicker.TEXT_SIZE_DEF;
 
 public class NumberPicker extends ConstraintLayout
         implements View.OnClickListener, View.OnLongClickListener {
     private boolean showText;
     private Integer startValue, minValue, maxValue, currentValue;
     private Integer numberTxtColor, btnTxtColor;
+    private Integer textSize, btnTextSize;
 
     private Button minusBtn, plusBtn;
     private TextView tvNumber;
     private Listener listener;
 
-    //TODO: add setTextSize();
+
     public NumberPicker(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -51,8 +55,11 @@ public class NumberPicker extends ConstraintLayout
     protected void onDraw(Canvas canvas) {
         tvNumber.setText(String.valueOf(currentValue));
         tvNumber.setTextColor(numberTxtColor);
+        tvNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
         plusBtn.setTextColor(btnTxtColor);
         minusBtn.setTextColor(btnTxtColor);
+        plusBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
+        minusBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
         listener.onNumberChange(currentValue);
         super.onDraw(canvas);
     }
@@ -79,6 +86,12 @@ public class NumberPicker extends ConstraintLayout
             this.maxValue = tArr.getInt(
                     R.styleable.NumberPicker_maxValue,
                     MAX_VALUE_DEF);
+            this.textSize = tArr.getDimensionPixelSize(
+                    R.styleable.NumberPicker_textSize,
+                    TEXT_SIZE_DEF);
+            this.btnTextSize = tArr.getDimensionPixelSize(
+                    R.styleable.NumberPicker_btnTextSize,
+                    BTN_TEXT_SIZE_DEF);
             initCurrentNumber();
         } finally {
             tArr.recycle();
