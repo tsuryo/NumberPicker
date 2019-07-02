@@ -30,14 +30,14 @@ import static com.tsuryo.numberpicker.Constants.NumberPicker.TEXT_SIZE_DEF;
 
 public class NumberPicker extends ConstraintLayout
         implements View.OnClickListener, View.OnLongClickListener {
-    private boolean showText;
-    private Integer startValue, minValue, maxValue, currentValue;
-    private Integer numberTxtColor, btnTxtColor;
-    private Integer textSize, btnTextSize;
+    private boolean mShowText;
+    private Integer mStartValue, mMinValue, mMaxValue, mCurrentValue;
+    private Integer mNumberTxtColor, mBtnTxtColor;
+    private Integer mTextSize, mBtnTextSize;
 
-    private Button minusBtn, plusBtn;
-    private TextView tvNumber;
-    private Listener listener;
+    private Button mBtnMinus, mBtnPlus;
+    private TextView mTvNumber;
+    private Listener mListener;
 
 
     public NumberPicker(Context context, AttributeSet attrs) {
@@ -53,14 +53,14 @@ public class NumberPicker extends ConstraintLayout
 
     @Override
     protected void onDraw(Canvas canvas) {
-        tvNumber.setText(String.valueOf(currentValue));
-        tvNumber.setTextColor(numberTxtColor);
-        tvNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
-        plusBtn.setTextColor(btnTxtColor);
-        minusBtn.setTextColor(btnTxtColor);
-        plusBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
-        minusBtn.setTextSize(TypedValue.COMPLEX_UNIT_PX, btnTextSize);
-        listener.onNumberChange(currentValue);
+        mTvNumber.setText(String.valueOf(mCurrentValue));
+        mTvNumber.setTextColor(mNumberTxtColor);
+        mTvNumber.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize);
+        mBtnPlus.setTextColor(mBtnTxtColor);
+        mBtnMinus.setTextColor(mBtnTxtColor);
+        mBtnPlus.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBtnTextSize);
+        mBtnMinus.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBtnTextSize);
+        mListener.onNumberChange(mCurrentValue);
         super.onDraw(canvas);
     }
 
@@ -69,27 +69,27 @@ public class NumberPicker extends ConstraintLayout
                 attrs, R.styleable.NumberPicker,
                 0, 0);
         try {
-            this.showText = tArr.getBoolean(
+            mShowText = tArr.getBoolean(
                     R.styleable.NumberPicker_showText, true);
-            this.btnTxtColor = tArr.getColor(
+            mBtnTxtColor = tArr.getColor(
                     R.styleable.NumberPicker_btnTxtColor,
                     getResources().getColor(R.color.colorPrimary));
-            this.numberTxtColor = tArr.getColor(
+            mNumberTxtColor = tArr.getColor(
                     R.styleable.NumberPicker_numberTxtColor,
                     getResources().getColor(R.color.colorAccent));
-            this.startValue = tArr.getInt(
+            mStartValue = tArr.getInt(
                     R.styleable.NumberPicker_startValue,
                     START_VALUE_DEF);
-            this.minValue = tArr.getInt(
+            mMinValue = tArr.getInt(
                     R.styleable.NumberPicker_minValue,
                     MIN_VALUE_DEF);
-            this.maxValue = tArr.getInt(
+            mMaxValue = tArr.getInt(
                     R.styleable.NumberPicker_maxValue,
                     MAX_VALUE_DEF);
-            this.textSize = tArr.getDimensionPixelSize(
+            mTextSize = tArr.getDimensionPixelSize(
                     R.styleable.NumberPicker_textSize,
                     TEXT_SIZE_DEF);
-            this.btnTextSize = tArr.getDimensionPixelSize(
+            mBtnTextSize = tArr.getDimensionPixelSize(
                     R.styleable.NumberPicker_btnTextSize,
                     BTN_TEXT_SIZE_DEF);
             initCurrentNumber();
@@ -99,32 +99,32 @@ public class NumberPicker extends ConstraintLayout
     }
 
     private void initCurrentNumber() {
-        if (minValue <= startValue
-                && startValue <= maxValue) {
-            this.currentValue = startValue;
+        if (mMinValue <= mStartValue
+                && mStartValue <= mMaxValue) {
+            this.mCurrentValue = mStartValue;
         } else {
-            currentValue = (maxValue + minValue) / 2;
+            mCurrentValue = (mMaxValue + mMinValue) / 2;
         }
     }
 
     private void initViews() {
-        minusBtn = findViewById(R.id.minusBtn);
-        plusBtn = findViewById(R.id.plusBtn);
-        minusBtn.setOnClickListener(this);
-        plusBtn.setOnClickListener(this);
-        plusBtn.setOnLongClickListener(this);
-        minusBtn.setOnLongClickListener(this);
-        tvNumber = findViewById(R.id.tvNumber);
+        mBtnMinus = findViewById(R.id.minusBtn);
+        mBtnPlus = findViewById(R.id.plusBtn);
+        mBtnMinus.setOnClickListener(this);
+        mBtnPlus.setOnClickListener(this);
+        mBtnPlus.setOnLongClickListener(this);
+        mBtnMinus.setOnLongClickListener(this);
+        mTvNumber = findViewById(R.id.tvNumber);
     }
 
     /**
-     * @return the tvNumber current value
+     * @return the mTvNumber current value
      * if there is a problem with the TextView
      * will return START_VALUE_DEF
      */
     public int getValue() {
         try {
-            return Integer.valueOf(tvNumber.getText().toString());
+            return Integer.valueOf(mTvNumber.getText().toString());
         } catch (Exception e) {
             e.printStackTrace();
             return START_VALUE_DEF;
@@ -132,75 +132,83 @@ public class NumberPicker extends ConstraintLayout
     }
 
     public void setCurrentValue(Integer currentValue) {
-        this.currentValue = currentValue;
-        tvNumber.setText(String.valueOf(currentValue));
+        this.mCurrentValue = currentValue;
+        mTvNumber.setText(String.valueOf(currentValue));
     }
 
     public void setListener(Listener listener) {
-        this.listener = listener;
+        this.mListener = listener;
     }
 
     public boolean isShowText() {
-        return showText;
+        return mShowText;
     }
 
     public Integer getStartValue() {
-        return startValue;
+        return mStartValue;
     }
 
     public Integer getMinValue() {
-        return minValue;
+        return mMinValue;
     }
 
     public Integer getMaxValue() {
-        return maxValue;
+        return mMaxValue;
     }
 
     public Integer getNumberTxtColor() {
-        return numberTxtColor;
+        return mNumberTxtColor;
     }
 
     public Integer getBtnTxtColor() {
-        return btnTxtColor;
+        return mBtnTxtColor;
+    }
+
+    public Integer getTextSize() {
+        return mTextSize;
+    }
+
+    public Integer getBtnTextSize() {
+        return mBtnTextSize;
     }
 
     public void setShowText(boolean showText) {
-        this.showText = showText;
+        mShowText = showText;
         refresh();
     }
 
     public void setStartValue(Integer startValue) {
-        this.startValue = startValue;
+        mStartValue = startValue;
         refresh();
     }
 
     public void setMinValue(Integer minValue) {
-        this.minValue = minValue;
+        mMinValue = minValue;
         refresh();
     }
 
     public void setMaxValue(Integer maxValue) {
-        this.maxValue = maxValue;
+        mMaxValue = maxValue;
         refresh();
     }
 
     public void setNumberTxtColor(Integer numberTxtColor) {
-        this.numberTxtColor = numberTxtColor;
+        mNumberTxtColor = numberTxtColor;
         refresh();
     }
 
     public void setBtnTxtColor(Integer btnTxtColor) {
-        this.btnTxtColor = btnTxtColor;
+        mBtnTxtColor = btnTxtColor;
         refresh();
     }
 
     public void setTextSize(Integer textSize) {
-        this.textSize = textSize;
+        mTextSize = textSize;
         refresh();
     }
 
     public void setBtnTextSize(Integer btnTextSize) {
-        this.btnTextSize = btnTextSize;
+        mBtnTextSize = btnTextSize;
         refresh();
     }
 
@@ -212,13 +220,13 @@ public class NumberPicker extends ConstraintLayout
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.plusBtn
-                && currentValue <= maxValue)
-            currentValue++;
+                && mCurrentValue <= mMaxValue)
+            mCurrentValue++;
         else if (view.getId() == R.id.minusBtn
-                && currentValue >= minValue)
-            currentValue--;
-        tvNumber.setText(String.valueOf(currentValue));
-        listener.onNumberChange(currentValue);
+                && mCurrentValue >= mMinValue)
+            mCurrentValue--;
+        mTvNumber.setText(String.valueOf(mCurrentValue));
+        mListener.onNumberChange(mCurrentValue);
     }
 
     @Override
@@ -232,18 +240,18 @@ public class NumberPicker extends ConstraintLayout
             public void run() {
                 switch (v.getId()) {
                     case R.id.plusBtn: {
-                        if (currentValue <= maxValue)
-                            currentValue++;
+                        if (mCurrentValue <= mMaxValue)
+                            mCurrentValue++;
                         break;
                     }
                     case R.id.minusBtn: {
-                        if (currentValue >= minValue)
-                            currentValue--;
+                        if (mCurrentValue >= mMinValue)
+                            mCurrentValue--;
                         break;
                     }
                 }
-                tvNumber.setText(String.valueOf(currentValue));
-                listener.onNumberChange(currentValue);
+                mTvNumber.setText(String.valueOf(mCurrentValue));
+                mListener.onNumberChange(mCurrentValue);
                 counter[0]++;
             }
         };
@@ -281,8 +289,8 @@ public class NumberPicker extends ConstraintLayout
     protected Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
         return new SavedState(superState,
-                numberTxtColor, btnTxtColor,
-                textSize, btnTextSize);
+                mNumberTxtColor, mBtnTxtColor,
+                mTextSize, mBtnTextSize);
     }
 
     @Override
@@ -291,49 +299,61 @@ public class NumberPicker extends ConstraintLayout
         super.onRestoreInstanceState(savedState.getSuperState());
         setNumberTxtColor(savedState.getTxtColor());
         setBtnTxtColor(savedState.getBtnColor());
+        setTextSize(savedState.getTextSize());
+        setBtnTextSize(savedState.getBtnTextSize());
     }
 
     interface Listener {
         void onNumberChange(int num);
     }
 
-    //todo: save textSize and btnTextSize
+
     protected static class SavedState extends BaseSavedState {
-        private final int txtColor;
-        private final int btnColor;
-        private final int textSize, btnTextSize;
+        private final int mTxtColor;
+        private final int mBtnColor;
+        private final int mTextSize, mBtnTextSize;
 
         private SavedState(Parcelable superState,
                            int txtColor, int number2,
                            int textSize, int btnTextSize) {
             super(superState);
-            this.txtColor = txtColor;
-            this.btnColor = number2;
-            this.textSize = textSize;
-            this.btnTextSize = btnTextSize;
+            mTxtColor = txtColor;
+            mBtnColor = number2;
+            mTextSize = textSize;
+            mBtnTextSize = btnTextSize;
         }
 
         private SavedState(Parcel in) {
             super(in);
-            txtColor = in.readInt();
-            btnColor = in.readInt();
-            textSize = in.readInt();
-            btnTextSize = in.readInt();
+            mTxtColor = in.readInt();
+            mBtnColor = in.readInt();
+            mTextSize = in.readInt();
+            mBtnTextSize = in.readInt();
         }
 
         int getTxtColor() {
-            return txtColor;
+            return mTxtColor;
         }
 
         int getBtnColor() {
-            return btnColor;
+            return mBtnColor;
+        }
+
+        int getTextSize() {
+            return mTextSize;
+        }
+
+        int getBtnTextSize() {
+            return mBtnTextSize;
         }
 
         @Override
         public void writeToParcel(Parcel destination, int flags) {
             super.writeToParcel(destination, flags);
-            destination.writeInt(txtColor);
-            destination.writeInt(btnColor);
+            destination.writeInt(mTxtColor);
+            destination.writeInt(mBtnColor);
+            destination.writeInt(mTextSize);
+            destination.writeInt(mBtnTextSize);
         }
 
         public static final Parcelable.Creator<SavedState> CREATOR = new Creator<SavedState>() {
