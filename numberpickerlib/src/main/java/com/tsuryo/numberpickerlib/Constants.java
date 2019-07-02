@@ -6,8 +6,8 @@ final class Constants {
         static final int MIN_VALUE_DEF = 1;
         static final int MAX_VALUE_DEF = 100;
 
-        static final int TEXT_SIZE_DEF = 37;
-        static final int BTN_TEXT_SIZE_DEF = 37;
+        static final int TEXT_SIZE_DEF = 47;
+        static final int BTN_TEXT_SIZE_DEF = 47;
 
         static final int DELAY = 100;
         static final int SLOW_PERIOD = 500;
