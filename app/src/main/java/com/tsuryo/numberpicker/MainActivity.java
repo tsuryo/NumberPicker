@@ -10,14 +10,14 @@ import com.tsuryo.numberpickerlib.NumberPicker;
 public class MainActivity extends AppCompatActivity
         implements NumberPicker.Listener {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private NumberPicker numberPicker;
+    private NumberPicker mNumberPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        numberPicker = findViewById(R.id.numberPicker);
-        numberPicker.setListener(this);
+        mNumberPicker = findViewById(R.id.numberPicker);
+        mNumberPicker.setListener(this);
     }
 
     @Override

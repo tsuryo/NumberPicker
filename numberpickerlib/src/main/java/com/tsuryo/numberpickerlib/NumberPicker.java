@@ -30,7 +30,6 @@ import static com.tsuryo.numberpickerlib.Constants.NumberPicker.TEXT_SIZE_DEF;
 
 public class NumberPicker extends ConstraintLayout
         implements View.OnClickListener, View.OnLongClickListener {
-    private boolean mShowText;
     private Integer mStartValue, mMinValue, mMaxValue, mCurrentValue;
     private Integer mNumberTxtColor, mBtnTxtColor;
     private Integer mTextSize, mBtnTextSize;
@@ -69,14 +68,12 @@ public class NumberPicker extends ConstraintLayout
                 attrs, R.styleable.NumberPicker,
                 0, 0);
         try {
-            mShowText = tArr.getBoolean(
-                    R.styleable.NumberPicker_showText, true);
             mBtnTxtColor = tArr.getColor(
                     R.styleable.NumberPicker_btnTxtColor,
-                    getResources().getColor(R.color.colorPrimary));
+                    getResources().getColor(R.color.btnDefColor));
             mNumberTxtColor = tArr.getColor(
                     R.styleable.NumberPicker_numberTxtColor,
-                    getResources().getColor(R.color.colorAccent));
+                    getResources().getColor(R.color.textDefColor));
             mStartValue = tArr.getInt(
                     R.styleable.NumberPicker_startValue,
                     START_VALUE_DEF);
@@ -140,10 +137,6 @@ public class NumberPicker extends ConstraintLayout
         this.mListener = listener;
     }
 
-    public boolean isShowText() {
-        return mShowText;
-    }
-
     public Integer getStartValue() {
         return mStartValue;
     }
@@ -170,11 +163,6 @@ public class NumberPicker extends ConstraintLayout
 
     public Integer getBtnTextSize() {
         return mBtnTextSize;
-    }
-
-    public void setShowText(boolean showText) {
-        mShowText = showText;
-        refresh();
     }
 
     public void setStartValue(Integer startValue) {
