@@ -1,4 +1,4 @@
-package com.tsuryo.numberpicker;
+package com.tsuryo.numberpickerlib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -19,14 +19,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.tsuryo.numberpicker.Constants.NumberPicker.BTN_TEXT_SIZE_DEF;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.DELAY;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.FAST_PERIOD;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.MAX_VALUE_DEF;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.MIN_VALUE_DEF;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.SLOW_PERIOD;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.START_VALUE_DEF;
-import static com.tsuryo.numberpicker.Constants.NumberPicker.TEXT_SIZE_DEF;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.BTN_TEXT_SIZE_DEF;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.DELAY;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.FAST_PERIOD;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.MAX_VALUE_DEF;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.MIN_VALUE_DEF;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.SLOW_PERIOD;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.START_VALUE_DEF;
+import static com.tsuryo.numberpickerlib.Constants.NumberPicker.TEXT_SIZE_DEF;
 
 public class NumberPicker extends ConstraintLayout
         implements View.OnClickListener, View.OnLongClickListener {
@@ -238,17 +238,13 @@ public class NumberPicker extends ConstraintLayout
         final Runnable incrementTask = new Runnable() {
             @Override
             public void run() {
-                switch (v.getId()) {
-                    case R.id.plusBtn: {
-                        if (mCurrentValue <= mMaxValue)
-                            mCurrentValue++;
-                        break;
-                    }
-                    case R.id.minusBtn: {
-                        if (mCurrentValue >= mMinValue)
-                            mCurrentValue--;
-                        break;
-                    }
+                int i = v.getId();
+                if (i == R.id.plusBtn) {
+                    if (mCurrentValue <= mMaxValue)
+                        mCurrentValue++;
+                } else if (i == R.id.minusBtn) {
+                    if (mCurrentValue >= mMinValue)
+                        mCurrentValue--;
                 }
                 mTvNumber.setText(String.valueOf(mCurrentValue));
                 mListener.onNumberChange(mCurrentValue);
@@ -303,12 +299,12 @@ public class NumberPicker extends ConstraintLayout
         setBtnTextSize(savedState.getBtnTextSize());
     }
 
-    interface Listener {
+    public interface Listener {
         void onNumberChange(int num);
     }
 
 
-    protected static class SavedState extends BaseSavedState {
+    protected static class SavedState extends View.BaseSavedState {
         private final int mTxtColor;
         private final int mBtnColor;
         private final int mTextSize, mBtnTextSize;

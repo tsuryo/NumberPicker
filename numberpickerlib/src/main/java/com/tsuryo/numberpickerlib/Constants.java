@@ -1,4 +1,4 @@
-package com.tsuryo.numberpicker;
+package com.tsuryo.numberpickerlib;
 
 final class Constants {
     static final class NumberPicker {

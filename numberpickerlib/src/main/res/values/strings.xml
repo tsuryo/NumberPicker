@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NumberPicker</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="_0">0</string>
+    <string name="price">Price:</string>
+    <string name="total">Total:</string>
+    <string name="_50">50</string>
+</resources>

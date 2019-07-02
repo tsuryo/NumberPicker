@@ -2,9 +2,10 @@ package com.tsuryo.numberpicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.icu.lang.UCharacter;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.tsuryo.numberpickerlib.NumberPicker;
 
 public class MainActivity extends AppCompatActivity
         implements NumberPicker.Listener {
