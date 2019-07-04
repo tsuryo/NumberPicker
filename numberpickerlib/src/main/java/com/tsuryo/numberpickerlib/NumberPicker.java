@@ -59,7 +59,8 @@ public class NumberPicker extends ConstraintLayout
         mBtnMinus.setTextColor(mBtnTxtColor);
         mBtnPlus.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBtnTextSize);
         mBtnMinus.setTextSize(TypedValue.COMPLEX_UNIT_PX, mBtnTextSize);
-        mListener.onNumberChange(mCurrentValue);
+        if (mListener != null)
+            mListener.onNumberChange(mCurrentValue);
         super.onDraw(canvas);
     }
 
@@ -128,15 +129,6 @@ public class NumberPicker extends ConstraintLayout
         }
     }
 
-    public void setCurrentValue(Integer currentValue) {
-        this.mCurrentValue = currentValue;
-        mTvNumber.setText(String.valueOf(currentValue));
-    }
-
-    public void setListener(Listener listener) {
-        this.mListener = listener;
-    }
-
     public Integer getStartValue() {
         return mStartValue;
     }
@@ -163,6 +155,15 @@ public class NumberPicker extends ConstraintLayout
 
     public Integer getBtnTextSize() {
         return mBtnTextSize;
+    }
+
+    public void setCurrentValue(Integer currentValue) {
+        this.mCurrentValue = currentValue;
+        mTvNumber.setText(String.valueOf(currentValue));
+    }
+
+    public void setListener(Listener listener) {
+        this.mListener = listener;
     }
 
     public void setStartValue(Integer startValue) {

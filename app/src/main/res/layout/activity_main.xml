@@ -18,6 +18,22 @@
         app:minValue="1"
         app:startValue="1" />
 
+    <com.tsuryo.numberpickerlib.NumberPicker
+        android:id="@+id/example2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:btnTextSize="40dp"
+        app:btnTxtColor="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="@id/gdV50"
+        app:layout_constraintStart_toStartOf="@id/gdV50"
+        app:layout_constraintTop_toBottomOf="@id/numberPicker"
+        app:maxValue="150"
+        app:minValue="3"
+        app:numberTxtColor="@android:color/holo_blue_bright"
+        app:startValue="7"
+        app:textSize="33sp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gdH50"
         android:layout_width="wrap_content"
