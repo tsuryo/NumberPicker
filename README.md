@@ -1,7 +1,8 @@
 [![Release](https://jitpack.io/v/tsuryo/NumberPicker.svg)](https://jitpack.io/#tsuryo/NumberPicker)
 # NumberPicker
-
 Android library that provides a simple and customisable NumberPicker - Number Picker.
+
+<img width="175" alt="Screen Shot 2019-07-04 at 12 08 55" src="https://user-images.githubusercontent.com/42518244/60654621-fd8f9e00-9e54-11e9-8d1a-8903e6a13d50.png">
 
 ### Prerequisites
 Android 5.0+ API 21+
