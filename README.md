@@ -8,7 +8,7 @@ Android library that provides a simple and customisable NumberPicker - Number Pi
 Android 5.0+ API 21+
 # Features
 
-* Customizable fonts.
+* Customizable fonts (color, size).
 * Long Click for faster progress.
 * Also supports negative values.
 
