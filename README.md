@@ -14,7 +14,7 @@ Android 5.0+ API 21+
 
 # Usage
 // Java
-```
+```Java
         mNumberPicker = findViewById(R.id.numberPicker);
         mNumberPicker.setListener(new NumberPicker.Listener() {
             @Override
@@ -38,7 +38,7 @@ Android 5.0+ API 21+
 
 ```
 //XML
-```
+```XML
     <com.tsuryo.numberpickerlib.NumberPicker
         android:id="@+id/example2"
         android:layout_width="wrap_content"
