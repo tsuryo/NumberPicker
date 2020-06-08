@@ -16,7 +16,12 @@ Android 5.0+ API 21+
 // Java
 ```
         mNumberPicker = findViewById(R.id.numberPicker);
-        mNumberPicker.setListener(this);
+        mNumberPicker.setListener(new NumberPicker.Listener() {
+            @Override
+            public void onNumberChange(int num) {
+                Log.d(TAG, "Number - " + num);
+            }
+        });
 	/*
          * Additional attributes:
          * */
@@ -30,6 +35,7 @@ Android 5.0+ API 21+
         mNumberPicker.setMaxValue(150);
         mNumberPicker.setMinValue(0); //if not set, default is 0
         mNumberPicker.setStartValue(5);
+
 ```
 //XML
 ```
